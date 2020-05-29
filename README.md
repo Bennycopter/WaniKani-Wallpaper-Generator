@@ -41,8 +41,9 @@ Contains the pages and sub-pages seen by the user in the front-end, as well as v
 
 ### `/includes`
 Contains functions that are used elsewhere.
- - <details>
-   <summary>`helpers.php` - Adds basic features to PHP</summary>
+ - `helpers.php` - Adds basic features to PHP
+   <details>
+   <summary>Function declarations</summary>
    
    ```php
    clamp($var, $min, $max)
