@@ -59,16 +59,16 @@ Contains the pages and sub-pages seen by the user in the front-end, as well as v
 Contains functions that are used elsewhere.
  - [`helpers.php`](includes/helpers.php) - Adds basic functionality to PHP
    <details>
-       <summary>Function Declarations</summary>
-       
-       ```php
-       clamp($var, $min, $max)
-       interpolate($a, $b, $weight)
-       imagecolorallocate_from_hex($image, $hex)
-       file_put_prepended($string, $filename)
-       file_put_json($file, $array)
-       file_get_json($file)
-       ```
+     <summary>Function Declarations</summary>
+     
+     ```php 
+     clamp($var, $min, $max)
+     interpolate($a, $b, $weight)
+     imagecolorallocate_from_hex($image, $hex)
+     file_put_prepended($string, $filename)
+     file_put_json($file, $array)
+     file_get_json($file)
+     ```
    </details>
  - [`error_handling.php`](includes/error_handling.php) - Puts errors in [`/data/errors`](data/errors)
    <details>
@@ -117,7 +117,7 @@ Contains functions that are used elsewhere.
      load_kanji_order_file($kanji_set)
      ```
      The last four functions define the order that presets appear in the front-end.  The last function includes extra information to describe the kanji sets.
-     ```
+     ```php
      load_color_scheme_presets()
      load_font_presets()
      load_screen_presets()
