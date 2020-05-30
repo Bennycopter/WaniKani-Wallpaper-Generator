@@ -26,7 +26,7 @@ define("SITE_URL", "http://wkw.natural20design.com/");
 define("ROOT_URL",
     $_SERVER["HTTP_HOST"]=="localhost"
         ? '/'.pathinfo(__DIR__, PATHINFO_BASENAME)."/"
-        : "/"
+        : ""
 );
 
 # Assets

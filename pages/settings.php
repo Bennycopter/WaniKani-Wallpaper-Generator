@@ -558,8 +558,8 @@ function apply_font(font_title) {
         if (color_keys[i] === "c_background" || color_keys[i] === "c_section_titles" || color_keys[i] === "c_wallpaper_title")
             continue;
         $("#"+color_keys[i])
-            .css("-webkit-mask-image", "url('<?=ROOT_URL?>public/images/"+font_title+"-"+color_keys[i]+".png')")
-            .css("mask-image", "url('<?=ROOT_URL?>public/images/"+font_title+"-"+color_keys[i]+".png')");
+            .css("-webkit-mask-image", "url('<?=ROOT_URL?>/public/images/"+font_title+"-"+color_keys[i]+".png')")
+            .css("mask-image", "url('<?=ROOT_URL?>/public/images/"+font_title+"-"+color_keys[i]+".png')");
     }
 }
 
@@ -862,7 +862,7 @@ foreach ($fonts as $font_title=>$font) {
     foreach (["c_apprentice","c_burned","c_enlightened","c_guru","c_master","c_unseen"] as $level) {
         ?>
         preloaded_images["<?=$font_title?>-<?=$level?>"] = new Image();
-        preloaded_images["<?=$font_title?>-<?=$level?>"].src = "<?=ROOT_URL?>public/images/<?=$font_title?>-<?=$level?>.png";
+        preloaded_images["<?=$font_title?>-<?=$level?>"].src = "<?=ROOT_URL?>/public/images/<?=$font_title?>-<?=$level?>.png";
         <?php
     }
 }

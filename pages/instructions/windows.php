@@ -7,7 +7,7 @@
 
 <p>2. <strong>Download WallpaperChanger</strong></p>
 <p>Download the <strong>WallpaperChanger.exe</strong> program from <a href="https://github.com/philhansen/WallpaperChanger/releases/" target="_blank">this link</a>.  Save it to the folder you created in step 1.</p>
-<img src="<?=ROOT_URL?>public/images/help/run-notepad.jpg" style="width: 340px; padding-left: 30px; float:right;" alt="Run Notepad" />
+<img src="<?=ROOT_URL?>/public/images/help/run-notepad.jpg" style="width: 340px; padding-left: 30px; float:right;" alt="Run Notepad" />
 
 <p>3. <strong>Create a Batch File</strong></p>
 <p>Open up Notepad.  One way to open Notepad is to do Windows+R (hold down the Windows key on your keyboard and tap the "R" key once) and type "notepad", as shown on the right.</p>
@@ -22,7 +22,7 @@
 <p>Now save this text to the folder you created in step 1.  Call the file <strong>update.bat</strong>, and make sure to change the"Save as type" to "All Files (*.*)", as shown below.</p>
 
 <div style="text-align: center;">
-    <img src="<?=ROOT_URL?>public/images/help/save-bat.jpg" alt="Save Bat" />
+    <img src="<?=ROOT_URL?>/public/images/help/save-bat.jpg" alt="Save Bat" />
 </div>
 
 <p>At this point, you can double-click the batch file, and your wallpaper should update.</p>
@@ -56,7 +56,7 @@
 <p>4. <strong>Add it to the context menu</strong></p>
 
 <div style="text-align: center;">
-    <img src="<?=ROOT_URL?>public/images/help/context-menu.jpeg" alt="Context Menu" />
+    <img src="<?=ROOT_URL?>/public/images/help/context-menu.jpeg" alt="Context Menu" />
 </div>
 
 <p>To do this, we need to edit the registry.</p>
@@ -64,22 +64,22 @@
 <p><strong style="color: red; font-weight: bold;">Please proceed very cautiously and at your own risk. Editing the computer registry is serious business, and deleting and/or modifying items you shouldn’t can result in system crashes, data corruption, and more. I am not responsible for any losses caused by your mistakes here in this step.</strong></p>
 
 <div>
-    <img src="<?=ROOT_URL?>public/images/help/open-regedit.png" style="padding-left: 40px; float:right;" alt="Open RegEdit" />
+    <img src="<?=ROOT_URL?>/public/images/help/open-regedit.png" style="padding-left: 40px; float:right;" alt="Open RegEdit" />
     <p>Open up Registry Editor. Do Windows+R (hold down the Windows key on the keyboard and tap the R key once), and type “regedit” and hit OK.</p>
 </div>
 
 <div style="clear: both; padding-top: 20px;">
-    <img src="<?=ROOT_URL?>public/images/help/new-key.png" style="padding-left: 40px; float: right" alt="New Key" />
+    <img src="<?=ROOT_URL?>/public/images/help/new-key.png" style="padding-left: 40px; float: right" alt="New Key" />
     <p>In the left panel, open up HKEY_CLASSES_ROOT, scroll down until you see DesktopBackground and open it, and then open Shell, and create a new key under it by right-clicking on Shell and choosing New->Key.</p>
 </div>
 
 <div style="clear: both; padding-top: 20px;">
-    <img src="<?=ROOT_URL?>public/images/help/new-subkey.png" style="padding-left: 40px; float: right;" alt="New Subkey" />
+    <img src="<?=ROOT_URL?>/public/images/help/new-subkey.png" style="padding-left: 40px; float: right;" alt="New Subkey" />
     <p>Name the new Key as “Refresh WaniKani Wallpaper” or something similar (this will be the text that appears when you right-click on your desktop).  Right-click this new Key and create another Key underneath it exactly called “command”. After that, select the new command Key that you just created.</p>
 </div>
 
 <div style="clear: both; padding-top: 20px;">
-    <img src="<?=ROOT_URL?>public/images/help/command-enter.png" style="padding-left: 40px; float: right" alt="Command entry" />
+    <img src="<?=ROOT_URL?>/public/images/help/command-enter.png" style="padding-left: 40px; float: right" alt="Command entry" />
     <p>Now, in the right panel, double-click on “(Default)”, and type in the path to the batch file that you created in step 3, surrounded in double-quotes "like this".</p>
 </div>
 
