@@ -11,7 +11,7 @@ if (isset($_GET["password"]) && strlen($_GET["password"]))
 $password = $_SESSION["password"] ?? "";
 $password = preg_replace("/[^a-zA-Z0-9\-]+/","",$password);
 
-if (!is_dir(__DIR__."/password/$password")) {
+if (strlen($password) == 0 || !is_dir(__DIR__."/password/$password")) {
     header("HTTP/1.0 401 Unauthorized");
     die;
 }
