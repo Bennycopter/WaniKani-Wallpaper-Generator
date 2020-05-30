@@ -159,7 +159,7 @@ function create_and_output_wallpaper($s, $progress_report, $kanji_sections, $kan
             }
         }
         $section_offset_y += $s["wallpaper_title_padding_top"];
-        imagettftext($canvas, $s["wallpaper_title_height"], 0, $s["left"]+$s["wallpaper_title_padding_left"], $section_offset_y+$s["wallpaper_title_font_size"], $colors["wallpaper_title"], $wallpaper_title_font_path, $wallpaper_title);
+        imagettftext($canvas, $s["wallpaper_title_height"], 0, $s["left"]+$s["wallpaper_title_padding_left"], $section_offset_y+$s["wallpaper_title_height"], $colors["wallpaper_title"], $wallpaper_title_font_path, $wallpaper_title);
         $section_offset_y += $s["wallpaper_title_height"];
         $section_offset_y += $s["wallpaper_title_padding_bottom"];
     }
