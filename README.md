@@ -12,7 +12,7 @@ Do you want to help make this tool even better?
 
 **If you have an idea but don't know how to code**, then please share on the [WaniKani Community Page](https://community.wanikani.com/t/new-and-improved-wallpaper-generator/37321).  I would still like to hear from you!
 
-**If you do know how to code**, then read the [Code Walkthrough](#Code Walkthrough) and email me so we can get to work :)
+**If you do know how to code**, then read the [Code Walkthrough](#code-walkthrough) and email me so we can get to work :)
 
 ## Change Log
 
@@ -26,38 +26,38 @@ Do you want to help make this tool even better?
 
 - PHP 7.0+
 
-## Code Walkthrough
+## <a name="code-walkthrough"></a>Code Walkthrough
 
 This section explains every file and folder to get you familiar with the code.
 
 ### [`index.php`](index.php)
-- All front-end traffic goes through here because of the rules in `.htaccess`.
-- It includes [`config.php`](index.php) and all the files in [`/includes/`](index.php), and then passes control to [`router.php`](index.php).
+- All front-end traffic goes through here because of the rules in [`.htaccess`](.htaccess).
+- It includes [`config.php`](config.php) and all the files in [`/includes/`](includes), and then passes control to [`router.php`](router.php).
 - The line `define("INDEX", true)` helps prevent other pages from being accessed directly.
 - Other scripts can include this file without invoking the router by defining `NO_ROUTE`.
 
-### [`config.php`](index.php)
+### [`config.php`](config.php)
 - Contains configuration information.
   - Defines constants for paths and other configuration information.
   - Sets time zone and session path.
 
-### [`router.php`](index.php)
+### [`router.php`](router.php)
 - It passes control to some other file based on `$_GET["_url"]` and `$_SESSION`.
-  - `$_GET["_url"]` is set from `.htaccess`'s rewrite rules.
+  - `$_GET["_url"]` is set from [`.htaccess`](.htaccess)'s rewrite rules.
 
-### [`/pages`](index.php)
+### [`/pages`](pages)
 Contains the pages and sub-pages seen by the user in the front-end, as well as virtual pages that are only  functional.
-  - [`login.php`](index.php) - Login form
-  - [`logout.php`](index.php) - This logs the user out, then forwards the user to the login form
-  - [`settings.php`](index.php) - This is the page the user sees after logging in.
+  - [`login.php`](pages/login.php) - Login form
+  - [`logout.php`](pages/logout.php) - This logs the user out, then forwards the user to the login form
+  - [`settings.php`](pages/settings.php) - This is the page the user sees after logging in.
     - [`instructions.php`](pages/instructions.php) - This is included by `settings.php` to reduce file size.
     - [`instructions/*`](pages/instructions) - These are included by `instructions.php` to reduce file size.
   - [`download.php`](pages/download.php) - This generates the wallpaper and outputs it as a PNG.
-  - [`order.php`](index.php) - This file shows the contents of a specified Kanji Set Order file.
+  - [`order.php`](pages/order.php) - This file shows the contents of a specified Kanji Set Order file.
 
-### [`/includes`](index.php)
+### [`/includes`](includes)
 Contains functions that are used elsewhere.
- - [`helpers.php`](index.php) - Adds basic functionality to PHP
+ - [`helpers.php`](includes/helpers.php) - Adds basic functionality to PHP
    <details>
        <summary>Details</summary>
        
@@ -70,7 +70,7 @@ Contains functions that are used elsewhere.
        file_get_json($file)
        ```
    </details>
- - [`error_handling.php`](index.php) - Puts errors in [`/data/errors`](index.php)
+ - [`error_handling.php`](includes/error_handling.php) - Puts errors in [`/data/errors`](data/errors)
    <details>
       <summary>Function declarations</summary>
       
@@ -78,7 +78,7 @@ Contains functions that are used elsewhere.
       log_error($msg, $line, $file)
       ```
    </details>
- - [`wanikani.php`](index.php) - Making API requests
+ - [`wanikani.php`](includes/wanikani.php) - Making API requests
    <details>
       <summary>Function declarations</summary>
       
@@ -86,7 +86,7 @@ Contains functions that are used elsewhere.
    wanikani_request($endpoint, $api_key, $raw_response=false)
       ```
    </details>
- - [`users.php`](index.php) - Everything related to users
+ - [`users.php`](includes/users.php) - Everything related to users
    <details>
       <summary>Function declarations</summary>
       
@@ -105,7 +105,7 @@ Contains functions that are used elsewhere.
       get_user_progress_report($api_key)
       ```
    </details>
- - [`presets.php`](index.php) - Everything related to presets.
+ - [`presets.php`](includes/presets.php) - Everything related to presets.
    <details>
      <summary>Function declarations</summary>
      
@@ -124,7 +124,7 @@ Contains functions that are used elsewhere.
      load_kanji_set_presets()
      ```
    </details>
- - [`post.php`](index.php) - Contains functions used to filter and validate $_POST input.
+ - [`post.php`](includes/post.php) - Contains functions used to filter and validate $_POST input.
    <details>
      <summary>Function declarations</summary>
      
@@ -137,7 +137,7 @@ Contains functions that are used elsewhere.
      filter_checkbox_value($v)
      ```
    </details>
- - [`image.php`](index.php) - Contains exit functions that output an image instead of text.
+ - [`image.php`](includes/image.php) - Contains exit functions that output an image instead of text.
    <details>
      <summary>Function declarations</summary>
      
@@ -147,13 +147,13 @@ Contains functions that are used elsewhere.
      ```
    </details>
 
-### [`/assets`](index.php)
+### [`/assets`](assets)
 Contains resources that are **not directly** presented to the end-user:
   - Font files
   - Error graphic files
   - SSL certificate file
 
-### [`/public`](index.php)
+### [`/public`](public)
 Contains resources that are **directly** presented to the end-user:
   - 3rd-party files (see their licenses [here](public/3rd-party/3rd%20Party%20Licenses.md))
     - jQuery / jQuery UI
@@ -164,9 +164,9 @@ Contains resources that are **directly** presented to the end-user:
   - Images
     - *(**Exception** - source Photoshop images are in [public/images/source](public/images/source) just to be organized)*
 
-### [`/presets`](index.php)
+### [`/presets`](presets)
 These are data files that define the Fonts, Color Schemes, Kanji Sets ('orders'), and Screen Presets.
-- Color Schemes 
+- [Color Schemes](presets/color-schemes) 
   <details>
     <summary>Details</summary>
     - Each file looks like the following example.
@@ -183,7 +183,7 @@ These are data files that define the Fonts, Color Schemes, Kanji Sets ('orders')
       c_wallpaper_title: #cafe10
       ```
   </details>
-- Fonts
+- [Fonts](presets/fonts)
   <details>
     <summary>Details</summary>
     - Line 1: Font file name, as found in /assets/fonts
@@ -194,7 +194,7 @@ These are data files that define the Fonts, Color Schemes, Kanji Sets ('orders')
       https://www.freejapanesefont.com/komorebi-gothic-download/
       ```
   </details>
-- Kanji Sets ("Orders")
+- [Kanji Sets](presets/orders) ("Orders")
   <details>
     <summary>Details</summary>
     - These define the order of kanji as they appear on the wallpaper, hence the name "orders".
@@ -212,7 +212,7 @@ These are data files that define the Fonts, Color Schemes, Kanji Sets ('orders')
           Section 2 (in-line with kanji): 晶品呂昌早世胃旦胆凹
           ```
   </details>
-- Screen Presets
+- [Screen Presets](presets/screen-presets)
   <details>
     <summary>Details</summary>
     - Contains the dimensions and margins of various screens.
@@ -226,15 +226,15 @@ These are data files that define the Fonts, Color Schemes, Kanji Sets ('orders')
       bottom: 20
       ```
   </details>
-- WaniKani Kanji Cache
+- [WaniKani Kanji Cache](presets/all-wk-kanji.txt)
   <details>
     <summary>Details</summary>
-    - `all-wk-kanji.txt` contains the kanji from WaniKani with their subject ID.  This file should be regenerated whenever WaniKani has a content update.
+    - [`all-wk-kanji.txt`](presets/all-wk-kanji.txt) contains the kanji from WaniKani with their subject ID.  This file should be regenerated whenever WaniKani has a content update.
   </details> 
 
-### [`/data`](index.php)
+### [`/data`](data)
 These are files that are created as the app is used.
-- Users
+- [Users](data/users)
   <details>
     <summary>Details</summary>
     - A folder is created for each user with their API key.  For example:
@@ -253,19 +253,19 @@ These are files that are created as the app is used.
             Masayoshiro
             ```
   </details>
-- Sessions
-  - Session data is stored here.  To log everyone out, empty this file.
-- Errors
+- [Sessions](data/sessions)
+  - Session data is stored here.  To log everyone out, empty this folder.
+- [Errors](data/errors)
   - Errors are stored here.
 
-### [`/secret`](index.php)
-This contains admin tools.  Navigate your browser to this folder to access the tools.  It is password-protected by an empty folder inside the [`/secret/password`](index.php) directory.
-- [`/secret/password`](index.php) - Contains nothing, don't look!
-- [`/secret/tools`](index.php) - Contains tool files
-  - [`generate-suborders.php`](index.php) - Generates the Kanji Sets
-  - [`request-wanikani.php`](index.php) - Just a utility for requesting data from the WaniKani API
-  - [`update-wanikani-cache.php`](index.php) - Updates the [`/presets/all-wk-kanji.txt`](index.php) file
-  - [`log-everyone-out.php`](index.php) - This logs everyone out, just in case I need to
+### [`/secret`](secret)
+This contains admin tools.  Navigate your browser to this folder to access the tools.  It is password-protected by an empty folder inside the [`/secret/password`](secret/password) directory.
+- [`/secret/password`](secret/password) - Contains nothing, don't look!
+- [`/secret/tools`](secret/tools) - Contains tool files
+  - [`generate-suborders.php`](secret/tools/generate-suborders.php) - Generates the Kanji Sets
+  - [`request-wanikani.php`](secret/tools/request-wanikani.php) - Just a utility for requesting data from the WaniKani API
+  - [`update-wanikani-cache.php`](secret/tools/update-wanikani-cache.php) - Updates the [`/presets/all-wk-kanji.txt`](secret/tools/update-wanikani-cache.php) file
+  - [`log-everyone-out.php`](secret/tools/log-everyone-out.php) - This logs everyone out, just in case I need to
 
-### `/notes`
+### [`/notes`](notes)
 - Contains further documentation. You can ignore these.
