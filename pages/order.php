@@ -33,6 +33,9 @@ function leave() {
         display: flex;
         justify-content: center;
     }
+    pre {
+        white-space: pre-line;
+    }
     </style>
 </head>
 <body>
