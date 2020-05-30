@@ -20,26 +20,26 @@ if (sizeof($_POST) > 0) {
         ///// Presets /////
         [ // Fonts
             "keys" => ["font","wallpaper_title_font","section_titles_font"],
-			"filter" => "sanitize_filename",
+            "filter" => "sanitize_filename",
             "validate" => "font_file_exists",
         ],
         [ // Color Schemes
             "keys" => ["color_scheme"],
-			"filter" => "sanitize_filename",
+            "filter" => "sanitize_filename",
             "validate" => function ($v) {
-				return $v == "Custom" || color_scheme_exists($v);
-			},
+                return $v == "Custom" || color_scheme_exists($v);
+            },
         ],
         [ // Screen Presets
             "keys" => ["screen_preset"],
-			"filter" => "sanitize_filename",
+            "filter" => "sanitize_filename",
             "validate" => function ($v) {
-				return $v == "Custom" || screen_preset_exists($v);
-			},
+                return $v == "Custom" || screen_preset_exists($v);
+            },
         ],
         [ // Kanji Set
             "keys" => ["kanji_set"],
-			"filter" => "sanitize_filename",
+            "filter" => "sanitize_filename",
             "validate" => "kanji_set_exists",
         ],
 
@@ -60,8 +60,8 @@ if (sizeof($_POST) > 0) {
                 "top","bottom",
             ],
             "filter" => function($v) {
-	            $v = filter_integer($v);
-	            return clamp($v, 0, 4100);
+                $v = filter_integer($v);
+                return clamp($v, 0, 4100);
             }
         ],
         [ // Kanji Subset limits
@@ -87,24 +87,24 @@ if (sizeof($_POST) > 0) {
                 "wallpaper_title_height",
                 "section_title_height"
             ],
-			"filter" => function($v) {
-				$v = filter_integer($v);
-				return clamp($v, 0, 200);
-			}
+            "filter" => function($v) {
+                $v = filter_integer($v);
+                return clamp($v, 0, 200);
+            }
         ],
         [ // Title Paddings
             "keys" => [
-				"wallpaper_title_padding_top",
+                "wallpaper_title_padding_top",
                 "wallpaper_title_padding_left",
                 "wallpaper_title_padding_bottom",
                 "section_title_padding_top",
                 "section_title_padding_left",
                 "section_title_padding_bottom"
             ],
-			"filter" => function($v) {
-				$v = filter_integer($v);
-				return clamp($v, 0, 4100);
-			}
+            "filter" => function($v) {
+                $v = filter_integer($v);
+                return clamp($v, 0, 4100);
+            }
         ],
         [ // Kanji Spacing
             "keys" => ["kanji_spacing"],
@@ -124,11 +124,11 @@ if (sizeof($_POST) > 0) {
                     continue;
             }
             // Filters sanitize the data coming in
-			if (isset($input["filter"])) {
-				$_POST[$key] = $input["filter"]($_POST[$key]);
+            if (isset($input["filter"])) {
+                $_POST[$key] = $input["filter"]($_POST[$key]);
             }
 
-			// Validators
+            // Validators
             if (!isset($input["validate"]) || $input["validate"]($_POST[$key])) {
                 $settings[$key] = $_POST[$key];
             }

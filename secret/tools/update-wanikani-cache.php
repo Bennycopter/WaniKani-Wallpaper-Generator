@@ -5,7 +5,7 @@
 // This should be run each time WaniKani has a content update
 
 if (!isset($_GET["api_key"]))
-	die("Put <pre>?api_key=____</pre> in the URL");
+    die("Put <pre>?api_key=____</pre> in the URL");
 
 define("NO_ROUTE",true);
 include("../../index.php");
@@ -19,7 +19,7 @@ $all_kanji = [];
 // Run through all endpoints
 $endpoint = "subjects?types=kanji";
 while ($endpoint != "") {
-	print "Requesting - $endpoint<br>";
+    print "Requesting - $endpoint<br>";
     $response = wanikani_request($endpoint, $api_key, true);
     if (!$response) die("Error with WK request");
     $endpoint = endpoint_from_url($response["pages"]["next_url"]);

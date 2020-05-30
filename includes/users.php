@@ -27,7 +27,7 @@ function get_user_username($api_key) {
 }
 
 function save_user_settings($api_key, $device, $settings) {
-	file_put_json(user_settings_file($api_key,$device), $settings);
+    file_put_json(user_settings_file($api_key,$device), $settings);
 }
 
 function user_settings_file($api_key, $device) {
@@ -136,29 +136,29 @@ function log_generation($api_key) {
 }
 
 function get_user_progress_report($api_key) {
-	$kanji_by_id = json_decode(file_get_contents(PRESETS_DIR."/all-wk-kanji.txt"),true);
-	$progress_report = [];
+    $kanji_by_id = json_decode(file_get_contents(PRESETS_DIR."/all-wk-kanji.txt"),true);
+    $progress_report = [];
 
-	# API Call to WaniKani.com
-	$endpoint = "assignments?subject_types=kanji&started=true";
-	while ($endpoint != "") {
+    # API Call to WaniKani.com
+    $endpoint = "assignments?subject_types=kanji&started=true";
+    while ($endpoint != "") {
 
-		$response = wanikani_request($endpoint, $api_key);
-		if (!$response) {
-			die_with_text_on_image("There was an issue with the API call to 'assignments'.  Please try again.\nIf this error persists, please let me know on the community page.");
-		}
-		$endpoint = endpoint_from_url($response["pages"]["next_url"]);
+        $response = wanikani_request($endpoint, $api_key);
+        if (!$response) {
+            die_with_text_on_image("There was an issue with the API call to 'assignments'.  Please try again.\nIf this error persists, please let me know on the community page.");
+        }
+        $endpoint = endpoint_from_url($response["pages"]["next_url"]);
 
-		foreach ($response["data"] as $assignment_data) {
-			$stage = $assignment_data["data"]["srs_stage_name"];
-			if (strpos($stage, " "))
-				$stage = substr($stage, 0, strpos($stage, " "));
-			$stage = strtolower($stage);
-			$subject_id = $assignment_data["data"]["subject_id"];
+        foreach ($response["data"] as $assignment_data) {
+            $stage = $assignment_data["data"]["srs_stage_name"];
+            if (strpos($stage, " "))
+                $stage = substr($stage, 0, strpos($stage, " "));
+            $stage = strtolower($stage);
+            $subject_id = $assignment_data["data"]["subject_id"];
 
-			$progress_report[$kanji_by_id[$subject_id]] = $stage;
-		}
-	}
+            $progress_report[$kanji_by_id[$subject_id]] = $stage;
+        }
+    }
 
-	return $progress_report;
+    return $progress_report;
 }

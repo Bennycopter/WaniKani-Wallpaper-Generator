@@ -19,7 +19,7 @@ define("PRESETS_DIR", ROOT_DIR . "/presets");
 
 # Sessions
 if (session_status() != PHP_SESSION_ACTIVE)
-	session_save_path(SESSIONS_DIR);
+    session_save_path(SESSIONS_DIR);
 
 # URLs
 define("SITE_URL", "http://wkw.natural20design.com/");

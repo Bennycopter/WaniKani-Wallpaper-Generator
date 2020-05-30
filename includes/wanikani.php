@@ -27,8 +27,8 @@ function wanikani_request($endpoint,$api_key,$raw_response=false) {
 }
 
 function endpoint_from_url($url) {
-	if (strpos($url, "/") !== false) {
-		$url = substr($url, strrpos($url, "/")+1);
-	}
-	return $url;
+    if (strpos($url, "/") !== false) {
+        $url = substr($url, strrpos($url, "/")+1);
+    }
+    return $url;
 }

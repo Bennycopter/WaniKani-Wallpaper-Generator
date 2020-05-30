@@ -13,22 +13,22 @@
         <!--Not ready--><li><a href="#tab-advanced" style="display: none;">Advanced</a></li>
     </ul>
     <div id="tab-manual-download">
-		<?php include PAGES_DIR."/instructions/manual-download.php"; ?>
+        <?php include PAGES_DIR."/instructions/manual-download.php"; ?>
     </div>
     <div id="tab-windows">
-		<?php include PAGES_DIR."/instructions/windows.php"; ?>
+        <?php include PAGES_DIR."/instructions/windows.php"; ?>
     </div>
     <div id="tab-mac">
-		<?php include PAGES_DIR."/instructions/mac.php"; ?>
+        <?php include PAGES_DIR."/instructions/mac.php"; ?>
     </div>
     <div id="tab-multiple-monitors">
-		<?php include PAGES_DIR."/instructions/multiple-monitors.php"; ?>
+        <?php include PAGES_DIR."/instructions/multiple-monitors.php"; ?>
     </div>
     <div id="tab-other-information">
-		<?php include PAGES_DIR."/instructions/other-information.php"; ?>
+        <?php include PAGES_DIR."/instructions/other-information.php"; ?>
     </div>
     <div id="tab-advanced">
-		<?php include PAGES_DIR."/instructions/advanced.php"; ?>
+        <?php include PAGES_DIR."/instructions/advanced.php"; ?>
     </div>
 </div>
 

@@ -12,25 +12,25 @@ if (sizeof($_POST)) {
     $commands = explode(" ", $_POST["command"]);
     switch ($commands[0]) {
         case "download":
-			if ($commands[1] == "wanikani")
-			    $output = download_wanikani($_POST["api_key"]);
-			break;
+            if ($commands[1] == "wanikani")
+                $output = download_wanikani($_POST["api_key"]);
+            break;
         case "make":
-			if ($commands[1] == "default")
-			    $output = make_default_set();
-			break;
+            if ($commands[1] == "default")
+                $output = make_default_set();
+            break;
         case "order":
-			$output = make_ordered_set($commands[1], $commands[3]);
-			break;
+            $output = make_ordered_set($commands[1], $commands[3]);
+            break;
         case "sectionate":
-			$output = make_sectionated_set($commands[1]);
-			break;
+            $output = make_sectionated_set($commands[1]);
+            break;
         case "reset":
             $output = hard_reset();
             break;
     }
     print ($output ?? "No commands run");
-	exit;
+    exit;
 }
 
 function hard_reset() {
@@ -47,10 +47,10 @@ function hard_reset() {
     $orders = array_diff($orders, $orders_to_keep);
     if (sizeof($orders)) {
         $output .= "Removing:".PHP_EOL;
-		foreach ($orders as $order) {
-			$output .= " - $order" . PHP_EOL;
-			unlink(OUTPUT_ORDERS_DIR."/$order");
-		}
+        foreach ($orders as $order) {
+            $output .= " - $order" . PHP_EOL;
+            unlink(OUTPUT_ORDERS_DIR."/$order");
+        }
     }
     else {
         $output .= "No files to remove";
@@ -60,99 +60,99 @@ function hard_reset() {
 
 function download_wanikani($api_key) {
 
-	$all_kanji = [];
+    $all_kanji = [];
 
-	$endpoint = "subjects?types=kanji";
-	while ($endpoint != "") {
-		$response = wanikani_request($endpoint, $api_key, true);
-		if (!isset($response["data"])) die("Error with WK request: " . print_r($response, true));
-		$endpoint = endpoint_from_url($response["pages"]["next_url"]);
-		foreach ($response["data"] as $kanji) {
-			$all_kanji[] = [
-				"kanji" => $kanji["data"]["characters"],
-				"meaning" => $kanji["data"]["meanings"][0]["meaning"],
-				"level" => intval($kanji["data"]["level"]),
-			];
-		}
-	}
+    $endpoint = "subjects?types=kanji";
+    while ($endpoint != "") {
+        $response = wanikani_request($endpoint, $api_key, true);
+        if (!isset($response["data"])) die("Error with WK request: " . print_r($response, true));
+        $endpoint = endpoint_from_url($response["pages"]["next_url"]);
+        foreach ($response["data"] as $kanji) {
+            $all_kanji[] = [
+                "kanji" => $kanji["data"]["characters"],
+                "meaning" => $kanji["data"]["meanings"][0]["meaning"],
+                "level" => intval($kanji["data"]["level"]),
+            ];
+        }
+    }
 
-	usort($all_kanji, function($a,$b){
-		return strcmp($a["meaning"],$b["meaning"]);
-	});
+    usort($all_kanji, function($a,$b){
+        return strcmp($a["meaning"],$b["meaning"]);
+    });
 
-	// Start Output
-	$output = "Source - https://www.wanikani.com/kanji";
-	$output .= PHP_EOL . PHP_EOL;
+    // Start Output
+    $output = "Source - https://www.wanikani.com/kanji";
+    $output .= PHP_EOL . PHP_EOL;
 
-	// Output by level
-	for ($level = 1; $level <= 60; $level++) {
-		$output .= "Level $level: ";
-		if ($level < 10) $output .= " ";
-		foreach ($all_kanji as $kanji) {
-			if ($kanji["level"] == $level)
-				$output .= $kanji["kanji"];
-		}
-		$output .= PHP_EOL;
-	}
+    // Output by level
+    for ($level = 1; $level <= 60; $level++) {
+        $output .= "Level $level: ";
+        if ($level < 10) $output .= " ";
+        foreach ($all_kanji as $kanji) {
+            if ($kanji["level"] == $level)
+                $output .= $kanji["kanji"];
+        }
+        $output .= PHP_EOL;
+    }
 
-	file_put_contents(OUTPUT_ORDERS_DIR."/wanikani.txt", trim($output));
-	return $output;
+    file_put_contents(OUTPUT_ORDERS_DIR."/wanikani.txt", trim($output));
+    return $output;
 }
 
 function make_default_set() {
-	// How to make default set
+    // How to make default set
     // 1. Start with Heisig
-	$default_set = load_kanji_array_from_set("heisig");
+    $default_set = load_kanji_array_from_set("heisig");
 
-	// 2. Add in all missing WK kanji
-	$wk_kanji = load_kanji_array_from_set("wanikani");
-	foreach ($wk_kanji as $kanji) {
-		if (!in_array($kanji, $default_set)) {
-			$heisig_kanji[] = $kanji;
-			//print "Adding $kanji" . PHP_EOL;
+    // 2. Add in all missing WK kanji
+    $wk_kanji = load_kanji_array_from_set("wanikani");
+    foreach ($wk_kanji as $kanji) {
+        if (!in_array($kanji, $default_set)) {
+            $heisig_kanji[] = $kanji;
+            //print "Adding $kanji" . PHP_EOL;
         }
-	}
+    }
 
-	// 3. Remove all non-WK kanji
-	foreach ($default_set as $k=>$kanji) {
-		if (!in_array($kanji, $wk_kanji)) {
-			unset($default_set[$k]);
-			//print "Removing $kanji" . PHP_EOL;
+    // 3. Remove all non-WK kanji
+    foreach ($default_set as $k=>$kanji) {
+        if (!in_array($kanji, $wk_kanji)) {
+            unset($default_set[$k]);
+            //print "Removing $kanji" . PHP_EOL;
         }
-	}
+    }
 
     // Start Output
     $source = "Source - (see Heisig ordering and WaniKani ordering)";
 
-	return output_basic_set_file("default", $source, $default_set);
+    return output_basic_set_file("default", $source, $default_set);
 }
 
 function make_ordered_set($base_set, $order_set) {
 
-	$ordered_kanji = load_kanji_array_from_set($order_set);
-	$sort_function = function($a, $b) use ($ordered_kanji) {
-		$aa = array_search($a, $ordered_kanji, true);
-		$bb = array_search($b, $ordered_kanji, true);
-		if ($aa === $bb) return 0;
-		if ($aa === false) return 1;
-		if ($bb === false) return -1;
-		return $aa <=> $bb;
-	};
+    $ordered_kanji = load_kanji_array_from_set($order_set);
+    $sort_function = function($a, $b) use ($ordered_kanji) {
+        $aa = array_search($a, $ordered_kanji, true);
+        $bb = array_search($b, $ordered_kanji, true);
+        if ($aa === $bb) return 0;
+        if ($aa === false) return 1;
+        if ($bb === false) return -1;
+        return $aa <=> $bb;
+    };
 
-	$sections = load_sections_from_set($base_set);
-	foreach ($sections as &$section) {
-		usort($section, $sort_function);
-	}
-
-	$output_file_name = "$base_set-ordered-by-$order_set";
-	$source = load_source_from_set($base_set);
-
-	if (sizeof($sections) == 1) {
-		$kanji = array_shift($sections);
-		return output_basic_set_file($output_file_name, $source, $kanji);
+    $sections = load_sections_from_set($base_set);
+    foreach ($sections as &$section) {
+        usort($section, $sort_function);
     }
-	else {
-	    return output_sectioned_set_file($output_file_name, $source, $sections);
+
+    $output_file_name = "$base_set-ordered-by-$order_set";
+    $source = load_source_from_set($base_set);
+
+    if (sizeof($sections) == 1) {
+        $kanji = array_shift($sections);
+        return output_basic_set_file($output_file_name, $source, $kanji);
+    }
+    else {
+        return output_sectioned_set_file($output_file_name, $source, $sections);
     }
 }
 
@@ -169,7 +169,7 @@ function make_sectionated_set($name) {
     // It groups the levels by Pleasant / Painful / Death / Hell / Paradise / Reality
     $sections = load_sections_from_set($name);
     $sections = [
-		"快 Pleasant" => join_array_of_arrays(array_slice($sections, 0, 10)),
+        "快 Pleasant" => join_array_of_arrays(array_slice($sections, 0, 10)),
         "苦 Painful" => join_array_of_arrays(array_slice($sections, 10, 10)),
         "死 Death" => join_array_of_arrays(array_slice($sections, 20, 10)),
         "地獄 Hell" => join_array_of_arrays(array_slice($sections, 30, 10)),
@@ -204,41 +204,41 @@ function output_basic_set_file($name, $source, $kanji) {
         $group_i += sizeof($group);
     }
 
-	file_put_contents(OUTPUT_ORDERS_DIR."/$name.txt", trim($output));
-	return $output;
+    file_put_contents(OUTPUT_ORDERS_DIR."/$name.txt", trim($output));
+    return $output;
 }
 
 function output_sectioned_set_file($name, $source, $sections) {
-	$output = $source;
-	$output .= PHP_EOL . PHP_EOL;
+    $output = $source;
+    $output .= PHP_EOL . PHP_EOL;
 
-	$condensed = sizeof($sections) > 30;
+    $condensed = sizeof($sections) > 30;
 
-	foreach ($sections as $section_header=>$kanji) {
-	    $output .= $section_header . ":";
-	    if ($condensed) {
-			$output .= " ";
-			$output .= implode($kanji);
-			$output .= PHP_EOL;
+    foreach ($sections as $section_header=>$kanji) {
+        $output .= $section_header . ":";
+        if ($condensed) {
+            $output .= " ";
+            $output .= implode($kanji);
+            $output .= PHP_EOL;
         }
-		if (!$condensed) {
-			$output .= PHP_EOL . PHP_EOL;
-			$output .= "# " . sizeof($kanji) . " Kanji";
-			$output .= PHP_EOL;
-			$output .= implode(PHP_EOL, mb_str_split(implode($kanji), 20));
-			$output .= PHP_EOL;
-			$output .= PHP_EOL;
+        if (!$condensed) {
+            $output .= PHP_EOL . PHP_EOL;
+            $output .= "# " . sizeof($kanji) . " Kanji";
+            $output .= PHP_EOL;
+            $output .= implode(PHP_EOL, mb_str_split(implode($kanji), 20));
+            $output .= PHP_EOL;
+            $output .= PHP_EOL;
         }
     }
 
-	file_put_contents(OUTPUT_ORDERS_DIR."/$name.txt", trim($output));
-	return $output;
+    file_put_contents(OUTPUT_ORDERS_DIR."/$name.txt", trim($output));
+    return $output;
 }
 
 function load_kanji_array_from_set($set) {
     $contents = file_get_contents(OUTPUT_ORDERS_DIR."/$set.txt");
     $contents = remove_ascii_characters($contents);
-	return mb_str_split($contents);
+    return mb_str_split($contents);
 }
 function load_source_from_set($set) {
     return trim(file(OUTPUT_ORDERS_DIR."/$set.txt")[0]);
@@ -254,14 +254,14 @@ function load_sections_from_set($set) {
         if (mb_substr($line,0,1) == "#")
             continue;
         if ($colon_pos = mb_strpos($line, ":")) {
-			$section_header = mb_substr($line, 0, $colon_pos);
-			$line = mb_substr($line, $colon_pos+1);
+            $section_header = mb_substr($line, 0, $colon_pos);
+            $line = mb_substr($line, $colon_pos+1);
         }
         $line = remove_ascii_characters($line);
         if (strlen($line)) {
-			if (!isset($kanji_by_sections[$section_header]))
-				$kanji_by_sections[$section_header] = "";
-			$kanji_by_sections[$section_header] .= $line;
+            if (!isset($kanji_by_sections[$section_header]))
+                $kanji_by_sections[$section_header] = "";
+            $kanji_by_sections[$section_header] .= $line;
         }
     }
     array_walk($kanji_by_sections, function(&$v){
@@ -275,44 +275,44 @@ function remove_ascii_characters($str) {
 }
 
 ?>
-	<!doctype html>
-	<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport"
-			  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Document</title>
-		<script src="<?=ROOT_URL?>/public/3rd-party/jquery-3.5.1.min.js"></script>
-		<style>
-		body {
-			background-color: black;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			color: white;
-			font-family: Arial, sans-serif;
-		}
-		#container {
-			padding: 20px;
-			background-color: #333;
-			width: 800px;
-		}
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <script src="<?=ROOT_URL?>/public/3rd-party/jquery-3.5.1.min.js"></script>
+        <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        #container {
+            padding: 20px;
+            background-color: #333;
+            width: 800px;
+        }
         #top-pane {
             height: 50vh;
             overflow-y:auto;
             border: 2px outset grey;
             padding: 10px;
         }
-		</style>
-	</head>
-	<body>
+        </style>
+    </head>
+    <body>
 
-	<div id="container" style="display: flex; flex-direction: column;">
-		<div id="top-pane">
-			<h2>WaniKani</h2>
+    <div id="container" style="display: flex; flex-direction: column;">
+        <div id="top-pane">
+            <h2>WaniKani</h2>
             <label>API Key: <input id="api-key" type="text"></label>
-			<button data-command="download wanikani">Download from WaniKani</button>
+            <button data-command="download wanikani">Download from WaniKani</button>
 
             <h2>Heisig</h2>
             <p>Update manually</p>
@@ -371,15 +371,15 @@ function remove_ascii_characters($str) {
             </div>
 
 
-		</div>
-		<pre id="response"></pre>
-	</div>
+        </div>
+        <pre id="response"></pre>
+    </div>
 
-	<script>
-	$(()=>{
-	    $("button").on("click",e=>{
-	        let $e = $(e.currentTarget);
-	        $e.attr("disabled",true);
+    <script>
+    $(()=>{
+        $("button").on("click",e=>{
+            let $e = $(e.currentTarget);
+            $e.attr("disabled",true);
             $.post(document.location.href, {
                 api_key: $("#api-key").val(),
                 command: $e.attr("data-command"),
@@ -388,11 +388,11 @@ function remove_ascii_characters($str) {
                 $e.attr("disabled",false);
                 $("#response").text(resp);
             });
-		});
-	});
-	</script>
+        });
+    });
+    </script>
 
-	</body>
-	</html>
+    </body>
+    </html>
 <?php
 

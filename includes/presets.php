@@ -4,20 +4,20 @@
 ///// Helper Functions /////////////////////////////////////////////////////////////////////////////////////////////////
 
 function font_file_exists($name) {
-	return file_exists(PRESETS_DIR."/fonts/$name.txt");
+    return file_exists(PRESETS_DIR."/fonts/$name.txt");
 }
 function color_scheme_exists($name) {
-	return file_exists(PRESETS_DIR."/color-schemes/$name.txt");
+    return file_exists(PRESETS_DIR."/color-schemes/$name.txt");
 }
 function screen_preset_exists($name) {
-	return file_exists(PRESETS_DIR."/screen-presets/$name.txt");
+    return file_exists(PRESETS_DIR."/screen-presets/$name.txt");
 }
 function kanji_set_exists($name) {
-	return file_exists(PRESETS_DIR."/orders/$name.txt");
+    return file_exists(PRESETS_DIR."/orders/$name.txt");
 }
 
 function load_kanji_order_file($kanji_set) {
-	return file_get_contents(PRESETS_DIR."/orders/$kanji_set.txt");
+    return file_get_contents(PRESETS_DIR."/orders/$kanji_set.txt");
 }
 
 ///// Preset Data //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -79,10 +79,10 @@ function load_font_presets() {
         $font_text = file_get_contents("$dir/$file");
         $font_lines = explode(PHP_EOL, $font_text);
         $fonts[$font_title] = [
-        	"file" => $font_lines[0],
-        	"source" => $font_lines[1],
-        	"realpath" => realpath(ASSETS_DIR."/fonts/" . $font_lines[0]),
-		];
+            "file" => $font_lines[0],
+            "source" => $font_lines[1],
+            "realpath" => realpath(ASSETS_DIR."/fonts/" . $font_lines[0]),
+        ];
     }
 
     // Remove empty data (in case file was missing)
