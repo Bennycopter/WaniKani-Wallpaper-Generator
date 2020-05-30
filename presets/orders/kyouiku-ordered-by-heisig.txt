@@ -75,3 +75,8 @@ Source - https://en.wikipedia.org/wiki/Ky%C5%8Diku_kanji
 勤難垂簡閉閣創俳干宇除痛済映貴遺並供異論
 冊補郵郷派衆段后詞革誤蒸宅展脳厳暖鋼就晩
 劇
+
+Prefectures:
+
+# 20 Kanji
+沖埼茨栃岐崎梨香佐奈阜阪縄滋井媛岡鹿熊潟

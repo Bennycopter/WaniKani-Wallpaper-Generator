@@ -75,3 +75,8 @@ Source - https://en.wikipedia.org/wiki/Ky%C5%8Diku_kanji
 洗尊窓幼潮鋼縦捨腹乳紅冊仁卵干頂穴暖朗肺
 熟晩陛拝棒糖覧奮蒸后班詞寸机磁灰垂穀絹尺
 蚕
+
+Prefectures:
+
+# 20 Kanji
+井岡佐阪崎奈香沖鹿埼縄熊茨潟梨栃岐阜滋媛

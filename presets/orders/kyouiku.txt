@@ -75,3 +75,8 @@ Source - https://en.wikipedia.org/wiki/Ky%C5%8Diku_kanji
 若著蒸蔵蚕衆裁装裏補視覧討訪訳詞誌認誕誠
 誤論諸警貴賃遺郵郷針鋼閉閣降陛除障難革頂
 骨
+
+Prefectures:
+
+# 20 Kanji
+茨媛岡潟岐熊香佐埼崎滋鹿縄井沖栃奈梨阪阜

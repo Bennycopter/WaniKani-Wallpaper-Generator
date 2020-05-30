@@ -75,3 +75,8 @@ Source - https://en.wikipedia.org/wiki/Ky%C5%8Diku_kanji
 降聖推臓磁誤源純沿射縮貴縦勤拝己盟将遺臨
 奏片鋼孝至郷仁誠樹朗潮寸尺班陛后奮頂穀絹
 蚕
+
+Prefectures:
+
+# 20 Kanji
+阪岡崎熊鹿奈沖縄香岐埼阜潟滋梨井佐媛茨栃
