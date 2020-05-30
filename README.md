@@ -50,8 +50,8 @@ Contains the pages and sub-pages seen by the user in the front-end, as well as v
   - [`login.php`](pages/login.php) - Login form
   - [`logout.php`](pages/logout.php) - This logs the user out, then forwards the user to the login form
   - [`settings.php`](pages/settings.php) - This is the page the user sees after logging in.
-    - [`instructions.php`](pages/instructions.php) - This is included by `settings.php` to reduce file size.
-    - [`instructions/*`](pages/instructions) - These are included by `instructions.php` to reduce file size.
+    - [`instructions.php`](pages/instructions.php) - This is included by [`settings.php`](pages/settings.php) to reduce file size.
+    - [`instructions/*`](pages/instructions) - These are included by [`instructions.php`](pages/instructions.php) to reduce file size.
   - [`download.php`](pages/download.php) - This generates the wallpaper and outputs it as a PNG.
   - [`order.php`](pages/order.php) - This file shows the contents of a specified Kanji Set Order file.
 
@@ -59,7 +59,7 @@ Contains the pages and sub-pages seen by the user in the front-end, as well as v
 Contains functions that are used elsewhere.
  - [`helpers.php`](includes/helpers.php) - Adds basic functionality to PHP
    <details>
-       <summary>Details</summary>
+       <summary>Function Declarations</summary>
        
        ```php
        clamp($var, $min, $max)
@@ -168,7 +168,8 @@ Contains resources that are **directly** presented to the end-user:
 These are data files that define the Fonts, Color Schemes, Kanji Sets ('orders'), and Screen Presets.
 - [Color Schemes](presets/color-schemes) 
   <details>
-    <summary>Details</summary>
+  <summary>Details</summary>
+  
     - Each file looks like the following example.
     - Example: `color-schemes/Default.txt`
     - ```
@@ -186,6 +187,7 @@ These are data files that define the Fonts, Color Schemes, Kanji Sets ('orders')
 - [Fonts](presets/fonts)
   <details>
     <summary>Details</summary>
+    
     - Line 1: Font file name, as found in /assets/fonts
     - Line 2: Source download location
     - Example: `fonts/Komorebi Gothic.txt`
@@ -197,6 +199,7 @@ These are data files that define the Fonts, Color Schemes, Kanji Sets ('orders')
 - [Kanji Sets](presets/orders) ("Orders")
   <details>
     <summary>Details</summary>
+    
     - These define the order of kanji as they appear on the wallpaper, hence the name "orders".
     - These files are presently as-is to the end-user via `order.php`.  When used to generate wallpapers, the following rules apply:
       - Line 1 is ignored
@@ -215,6 +218,7 @@ These are data files that define the Fonts, Color Schemes, Kanji Sets ('orders')
 - [Screen Presets](presets/screen-presets)
   <details>
     <summary>Details</summary>
+    
     - Contains the dimensions and margins of various screens.
     - Example: `screen-presets/iPad Pro 10.5-inch.txt`
       ```
@@ -229,6 +233,7 @@ These are data files that define the Fonts, Color Schemes, Kanji Sets ('orders')
 - [WaniKani Kanji Cache](presets/all-wk-kanji.txt)
   <details>
     <summary>Details</summary>
+    
     - [`all-wk-kanji.txt`](presets/all-wk-kanji.txt) contains the kanji from WaniKani with their subject ID.  This file should be regenerated whenever WaniKani has a content update.
   </details> 
 
@@ -237,7 +242,8 @@ These are files that are created as the app is used.
 - [Users](data/users)
   <details>
     <summary>Details</summary>
-    - A folder is created for each user with their API key.  For example:
+    
+    - A folder with files is created for each user with their API key.  For example:
       - `12345678-abcd-aaaa-1234-0123456789ab`
         - `generations.txt` - A new line is prepended to this file each time a wallpaper is attempted to be generated.  It contains the time and remote IP of each request.
           - Example:
