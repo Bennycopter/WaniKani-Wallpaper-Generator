@@ -150,7 +150,7 @@ function load_kanji_set_presets() {
         "地獄 Hell","天国 Paradise","現実 Reality"
     ];
     $wanikani_description = "This list is pulled from WaniKani itself, and
-                             it has been updated for the June 3, 2019 content update.";
+                             it has been updated on May 30, 2020.";
 
     return [
         ///// Default /////
@@ -159,7 +159,7 @@ function load_kanji_set_presets() {
             "description"=>"This kanji set is a variation on the Heisig set:
                             all missing WaniKani kanji have been added, and
                             all non-WaniKani kanji have been removed.",
-            "num_kanji"=>2034,
+            "num_kanji"=>1993,
         ],
 
         ///// Frequency /////
@@ -185,7 +185,7 @@ function load_kanji_set_presets() {
         "wanikani" => [
             "title"=>"WaniKani Levels",
             "num_levels" => 60,
-            "num_kanji" => 2034,
+            "num_kanji" => 2048,
             "sections" => /* Level 1 - Level 60 */
                           array_map(
                               function($v){return"Level $v";},
@@ -268,7 +268,7 @@ function load_kanji_set_presets() {
                                 range(2.5,1, 0.5)
                             )
                           ),
-            "num_kanji" => 2215,
+            "num_kanji" => 2219,
             "subsets"=> [
                 "ordered-by-wanikani" => [
                     "title"=>"Sorted by WaniKani order"
@@ -309,14 +309,15 @@ function load_kanji_set_presets() {
         ///// Kyouiku /////
         "kyouiku" => [
             "title"=>"Kyōiku Kanji",
-            "description" => "This is a subset of Jōyō kanji, holding the 1,006
+            "description" => "This is a subset of Jōyō kanji, holding the 1,026
                               kanji that Japanese schoolchildren should learn
                               for each year of primary school.",
             "more_info" => "https://en.wikipedia.org/wiki/Ky%C5%8Diku_kanji",
             "sections" => [
                 "1st Grade", "2nd Grade", "3rd Grade",
-                "4th Grade", "5th Grade", "6th Grade"],
-            "num_kanji" => 1006,
+                "4th Grade", "5th Grade", "6th Grade",
+                "Prefectures"],
+            "num_kanji" => 1026,
             "subsets" => [
                 "ordered-by-wanikani" => [
                     "title"=>"Sorted by WaniKani order"
