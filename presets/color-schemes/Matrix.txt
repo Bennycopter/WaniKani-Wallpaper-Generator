@@ -1,0 +1,9 @@
+c_background:  #000000
+c_unseen:      #303030
+c_apprentice:  #005600
+c_guru:        #448544
+c_master:      #7ee781
+c_enlightened: #4bf042
+c_burned:      #00FF00
+c_section_titles: #7ee781
+c_wallpaper_title: #00ff00

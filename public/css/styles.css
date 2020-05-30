@@ -1,0 +1,250 @@
+
+/* General ************************************************************************************************************/
+body {
+    background: black url("../images/background.jpg") center fixed;
+    color: white;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    /* Center contents on screen */
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#wrapper {
+    background: rgba(0,0,0,0.7);
+    width: 800px;
+    margin: 10px;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 10px 50px;
+}
+
+/* Preview Box (for font and color) */
+.masked {
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    width: 250px;
+    height: 40px;
+    margin: 10px 0;
+}
+div#c_background {
+    background-color: #000000;
+    padding: 30px 40px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    border: 2px solid white;
+    border-radius: 10px;
+    display: inline-block;
+}
+.colorpicker {
+    opacity: 0;
+    height: 40px;
+    width: 42px;
+}
+.plain-colorpicker .sp-dd {
+    display: none;
+}
+.plain-colorpicker {
+    padding: 0;
+    border: 0;
+    background: none;
+    margin: 4px 10px 4px 0;
+}
+.plain-colorpicker .sp-preview, .plain-colorpicker .sp-preview-inner {
+    margin-right: 0;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: none;
+}
+select {
+    color: white;
+    background-color: black;
+    padding: 10px;
+}
+.sp-picker-container {
+    position: relative;
+
+    border: 0;
+}
+.sp-container {
+    border-radius: 10px;
+    background-color: #333;
+    border: 0;
+}
+.sp-input {
+    color: white;
+}
+#color-pickers label {
+    font-size: 20px;
+    position: relative;
+    top: 4px;
+    left: 10px;
+}
+#color-pickers {
+    margin-bottom: 20px;
+}
+h1 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+h2 {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+select {
+    width: 100%;
+    background-color: #111;
+}
+.half-width-inputs div {
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+.half-width-inputs input {
+    width: 90%;
+    text-align: center;
+    margin-top:6px;
+    margin-bottom: 8px;
+}
+input[type="text"], input[type="number"] {
+    color: white;
+    background-color: #111;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 5px;
+}
+input[type="number"] {
+    padding-left: 20px;
+}
+a, a:visited {
+    color: #0093dd;
+    text-decoration: none;
+}
+a:hover {
+    color: yellow;
+}
+
+button.btn-big {
+    padding: 30px;
+}
+
+button {
+    background-color: #111;
+    border: 2px solid white;
+    color: white;
+}
+button:hover, button:focus {
+    cursor: pointer;
+    border: 2px solid yellow;
+    background-color: #555;
+}
+strong {
+    /*color: #e8ed57;*/
+    text-decoration: underline;
+}
+a.btn {
+    box-sizing: border-box;
+    background-color: #111;
+    border: 2px solid white;
+    color: white;
+}
+a.btn.btn-big {
+    padding: 30px;
+    line-height: 100px;
+}
+a.btn:hover, a.btn:focus {
+    cursor: pointer;
+    border: 2px solid yellow;
+    background-color: #555;
+}
+
+
+
+/*******************/
+/* Custom Checkbox */
+/*******************/
+
+/* The container */
+.checkbox-container {
+    display: inline-block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 12px;
+    cursor: pointer;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkbox-checkmark {
+    position: absolute;
+    top: -3px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #000;
+    border-radius: 3px;
+    border: 1px solid #999;
+
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input ~ .checkbox-checkmark {
+    background-color: #0093dd;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-container input:checked ~ .checkbox-checkmark {
+
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkbox-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkbox-checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-container .checkbox-checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+/* Other stuff*/
+
+input[type=number] {
+    text-align: center;
+}

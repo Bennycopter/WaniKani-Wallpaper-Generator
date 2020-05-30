@@ -1,0 +1,6 @@
+width: 2048
+height: 2732
+top: 20
+left: 20
+right: 20
+bottom: 20

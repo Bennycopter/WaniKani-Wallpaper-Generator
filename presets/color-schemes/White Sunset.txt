@@ -1,0 +1,9 @@
+c_background:  #000000
+c_unseen:      #303030
+c_apprentice:  #900c3e
+c_guru:        #c70039
+c_master:      #ff5733
+c_enlightened: #ffc300
+c_burned:      #ffffff
+c_section_titles: #10cafe
+c_wallpaper_title: #cafe10

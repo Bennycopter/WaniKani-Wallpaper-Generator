@@ -1,0 +1,15 @@
+data/errors/*
+!data/errors/.gitkeep
+data/sessions/*
+!data/sessions/.gitkeep
+data/users/*
+!data/users/.gitkeep
+
+secret/password/*
+!secret/password/.gitkeep
+!secret/password/index.php
+
+# Photoshop source files
+public/images/source/too-big-for-git/*
+
+sandbox.php
