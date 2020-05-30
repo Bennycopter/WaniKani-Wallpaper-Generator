@@ -72,6 +72,8 @@ if (sizeof($_POST) > 0 && isset($_POST["api-key"]) && isset($_POST["device"])) {
     }
 }
 
+include ROOT_DIR."/secret/banner.php";
+
 ?>
 <!doctype html>
 <html lang="en">

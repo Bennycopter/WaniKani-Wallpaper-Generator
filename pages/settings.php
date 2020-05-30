@@ -141,11 +141,8 @@ if (sizeof($_POST) > 0) {
     save_user_settings($api_key, $device, $settings);
 }
 
+include ROOT_DIR."/secret/banner.php";
 
-/// Page ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///
-/// The following HTML is real messy
-/// I wrote this before I learned about things like Flexbox, Grid, and
 ?>
 <!doctype html>
 <html lang="en">

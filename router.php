@@ -26,7 +26,6 @@ if (isset($_GET["logout"])) {
 }
 
 session_start();
-include "secret/banner.php";
 
 // Show login page
 if (!isset($_SESSION["api-key"]) || isset($_POST["login"])) {
