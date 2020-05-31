@@ -26,6 +26,9 @@ if (is_null($s["width"]))
 if ($s["width"] < 10 || $s["height"] < 10)
     die_with_text_on_image("Error: Width or height is too small.");
 
+if (num_generations_today($api_key) > DAILY_GENERATION_LIMIT)
+    die_with_image(ASSETS_DIR."/error-graphics/daily-limit-exceeded.jpg");
+
 
 ///// Make Wallpaper /////
 

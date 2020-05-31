@@ -135,6 +135,21 @@ function log_generation($api_key) {
     file_put_prepended($log, USERS_DIR."/$api_key/generations.txt");
 }
 
+function num_generations_today($api_key) {
+    $yesterday = time() - 24 * 60 * 60;
+    $num_generations = 0;
+
+    $lines = file(USERS_DIR."/$api_key/generations.txt");
+    foreach ($lines as $line) {
+        $pieces = explode(":",$line);
+        $time = intval($pieces[0]);
+        if ($time <= $yesterday)
+            return $num_generations;
+        $num_generations++;
+    }
+    return $num_generations;
+}
+
 function get_user_progress_report($api_key) {
     $kanji_by_id = json_decode(file_get_contents(PRESETS_DIR."/all-wk-kanji.txt"),true);
     $progress_report = [];

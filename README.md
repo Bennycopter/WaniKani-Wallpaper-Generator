@@ -102,6 +102,7 @@ Contains functions that are used elsewhere.
       prepare_user_folder($api_key, $username)
       user_folder_exists($api_key)
       log_generation($api_key)
+      num_generations_today($api_key)
       get_user_progress_report($api_key)
       ```
    </details>

@@ -38,3 +38,4 @@ define("COMMUNITY_TOPIC_URL", "https://community.wanikani.com/t/new-and-improved
 define("CURL_FOR_WINDOWS_VERSION", "7.70.0");
 define("MAX_FONT_SCALE", 0.80);
 define("MIN_FONT_SCALE", 0.50);
+define("DAILY_GENERATION_LIMIT", 100);
