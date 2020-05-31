@@ -6,6 +6,22 @@ See the [WaniKani Community Page](https://community.wanikani.com/t/new-and-impro
 
 Access it here: [wkw.natural20design.com](http://wkw.natural20design.com)
 
+## How to Run This Locally
+
+*This is a beginner's guide to running this on Windows.  You can ask for help on the [community page](https://community.wanikani.com/t/new-and-improved-wallpaper-generator/37321) for instructions with Mac and Linux. This will not run on ChromeOS.*
+
+**Part 1 - XAMPP**
+1) Install [XAMPP for *Windows*](https://www.apachefriends.org/index.html).  *(These instructions assume that you install it at `C:\xampp`)*
+2) Open the XAMPP Control Panel as an *administrator*, found at `C:\xampp\xampp-control.exe`.
+3) Click the Start button to the right of "Apache".
+4) Click the red X to the left of "Apache" to install the Apache service.
+
+**Part 2 - This App**
+2) [Download the source code](https://github.com/Bennycopter/WaniKani-Wallpaper-Generator/archive/master.zip) 
+3) Extract the folder to `C:\xampp\htdocs`
+4) Rename the `WaniKani-Wallpaper-Generator-master` folder to something nice and short, like `wkw`
+6) Open your browser to [http://localhost/wkw](http://localhost/wkw)
+
 ## How to Contribute
 
 Do you want to help make this tool even better?
@@ -24,7 +40,11 @@ Do you want to help make this tool even better?
 
 ## Requirements
 
-- PHP 7.0+
+- PHP 7.0+ with GD
+- Apache
+  
+OR
+- The latest version of [XAMPP](https://www.apachefriends.org/index.html)
 
 ## <a name="code-walkthrough"></a>Code Walkthrough
 
