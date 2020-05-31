@@ -159,7 +159,7 @@ function load_kanji_set_presets() {
             "description"=>"This kanji set is a variation on the Heisig set:
                             all missing WaniKani kanji have been added, and
                             all non-WaniKani kanji have been removed.",
-            "num_kanji"=>1993,
+            "num_kanji"=>2048,
         ],
 
         ///// Frequency /////

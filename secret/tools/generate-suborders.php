@@ -108,7 +108,7 @@ function make_default_set() {
     $wk_kanji = load_kanji_array_from_set("wanikani");
     foreach ($wk_kanji as $kanji) {
         if (!in_array($kanji, $default_set)) {
-            $heisig_kanji[] = $kanji;
+            $default_set[] = $kanji;
             //print "Adding $kanji" . PHP_EOL;
         }
     }
