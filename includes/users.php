@@ -81,6 +81,7 @@ function default_user_settings() {
 
         // Section titles
         "show_section_titles" => 1,
+        "collapse_sections" => 0,
         "section_title_padding_top" => 15,
         "section_title_padding_left" => 5,
         "section_title_padding_bottom" => 10,

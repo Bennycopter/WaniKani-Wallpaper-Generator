@@ -36,6 +36,9 @@ log_generation($api_key);
 $progress_report = get_user_progress_report($api_key);
 $font_scale = calculate_font_scale($s);
 $kanji_sections = load_kanji_sections($s);
+if ($s["collapse_sections"] == 1) {
+    $kanji_sections = collapse_sections($kanji_sections);
+}
 $fittings = calculate_fittings($s, $kanji_sections, $font_scale);
 create_and_output_wallpaper($s, $progress_report, $kanji_sections, load_kanji_set_presets(), load_font_presets(), $fittings);
 exit;
@@ -293,4 +296,14 @@ function load_kanji_sections($s) {
     }
 
     return $kanji_sections;
+}
+
+function collapse_sections($kanji_sections) {
+    $collapsed_sections = "";
+    foreach ($kanji_sections as $kanji_section) {
+        $collapsed_sections .= $kanji_section;
+    }
+    return [
+        ""=>$collapsed_sections,
+    ];
 }

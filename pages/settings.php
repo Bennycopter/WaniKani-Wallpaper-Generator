@@ -74,6 +74,7 @@ if (sizeof($_POST) > 0) {
             "keys" => [
                 "show_wallpaper_title",
                 "show_section_titles",
+                "collapse_sections",
             ],
             "on_empty" => "return_false",
             "filter" => "filter_checkbox_value"
@@ -476,6 +477,12 @@ include ROOT_DIR."/secret/banner.php";
                             }
                             ?>
                         </select>
+                    </div>
+                    <div style="text-align: center;">
+                        <label class="checkbox-container">Collapse sections?
+                            <input type="checkbox" <?php if ($settings["collapse_sections"]==1) print 'checked="checked"'; ?> name="collapse_sections">
+                            <span class="checkbox-checkmark"></span>
+                        </label>
                     </div>
 
                 </div>
