@@ -1,4 +1,4 @@
-Source - https://www.nihongo-pro.com/kanji-pal/list/jlpt/kanken
+Source - https://www.nihongo-pro.com/kanji-pal/list/jlpt/kanken and https://www.kanken.or.jp/kanken/outline/data/alterclassofkanji2020.pdf
 
 Kanken Level 10:
 
@@ -57,7 +57,7 @@ Kanken Level 6:
 歴減易容団史混暴財確犯災夢在罪個経率圧防
 余厚妻責条制断任素設評検増査判件際資義務
 税解総態状費勢示営提応過領統価護職停導演
-現備則規準張師幹額境燃象製述武型質輸慣居
+現備則準規張師幹額境燃象製述武型質輸慣居
 属効限肥豊構接再独故造往授復河貯迷招貸織
 益修程絶潔逆移精婦略寄航版快貧適均墓編粉
 救似脈酸賛祖衛飼複永績眼液採志興久序雑桜
@@ -121,7 +121,7 @@ Kanken Level 2.5:
 # 326 Kanji
 僕雰妥頑猫渉禅履閥昆裕嫌臭訟捜睡靴症傘督
 僚診江索懐購渇融泥偵漠薦杉汁厄酢津核廃献
-患塁償戻宜賄併妊娠還懸緒充渋鈴枠銃仙謙拒
+患塁償戻宜賄併娠妊還懸緒充渋鈴枠銃仙謙拒
 堀頻俊褒偽蛍徹艦撤析挑括枢喪斎糾摩懲懇筒
 琴垣泰斉撲貢刃缶竜忍釣棚菌塾稼溝磨肌眺泡
 涼寮碁猿棟寧租幣塀扉挿詐唇砕柳鉢培霜麻蚊
