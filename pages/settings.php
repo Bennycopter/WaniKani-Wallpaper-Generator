@@ -262,7 +262,8 @@ include ROOT_DIR."/secret/banner.php";
                 <input type="text" id="color-c_section_titles" class="colorpicker" name="c_section_titles" value="<?=$settings["c_section_titles"]?>" /><label for="color-c_section_titles">Section Titles</label><br />
                 <input type="text" id="color-c_wallpaper_title" class="colorpicker" name="c_wallpaper_title" value="<?=$settings["c_wallpaper_title"]?>" /><label for="color-c_wallpaper_title">Wallpaper Title</label><br />
             </div>
-            <em>Click on a color bubble to choose a custom color!</em>
+            <p style="font-style: italic">Click on a color bubble to choose a custom color!</p>
+            <p style="margin-top: 10px; font-style:italic;">Need inspiration for custom colors?  Try <a href="https://colorhunt.co/" target="_blank">this</a> or <a href="https://coolors.co/generate" target="_blank">this</a>.</p>
         </div>
         <div style="float: left; width: 25%;">
 
