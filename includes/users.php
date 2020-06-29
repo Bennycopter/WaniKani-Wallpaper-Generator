@@ -167,9 +167,6 @@ function get_user_progress_report($api_key) {
 
         foreach ($response["data"] as $assignment_data) {
             $stage = srs_stage_name_from_stage($assignment_data["data"]["srs_stage"]);
-            if (strpos($stage, " "))
-                $stage = substr($stage, 0, strpos($stage, " "));
-            $stage = strtolower($stage);
             $subject_id = $assignment_data["data"]["subject_id"];
 
             $progress_report[$kanji_by_id[$subject_id]] = $stage;
