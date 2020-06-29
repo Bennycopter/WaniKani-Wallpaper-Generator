@@ -40,7 +40,7 @@ Do you want to help make this tool even better?
 
 ## Requirements
 
-- PHP 7.0+ with GD
+- PHP 7.1+ with GD
 - Apache
   
 OR
