@@ -166,7 +166,7 @@ function get_user_progress_report($api_key) {
         $endpoint = endpoint_from_url($response["pages"]["next_url"]);
 
         foreach ($response["data"] as $assignment_data) {
-            $stage = $assignment_data["data"]["srs_stage_name"];
+            $stage = srs_stage_name_from_stage($assignment_data["data"]["srs_stage"]);
             if (strpos($stage, " "))
                 $stage = substr($stage, 0, strpos($stage, " "));
             $stage = strtolower($stage);

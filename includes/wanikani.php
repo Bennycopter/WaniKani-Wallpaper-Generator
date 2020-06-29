@@ -32,3 +32,12 @@ function endpoint_from_url($url) {
     }
     return $url;
 }
+
+function srs_stage_name_from_stage($srs_stage) {
+    if ($srs_stage >= 9) return "burned";
+    if ($srs_stage >= 8) return "enlightened";
+    if ($srs_stage >= 7) return "master";
+    if ($srs_stage >= 5) return "guru";
+    if ($srs_stage >= 1) return "apprentice";
+    return "unseen";
+}
