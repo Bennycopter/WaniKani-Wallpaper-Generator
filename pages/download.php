@@ -1,5 +1,7 @@
 <?php defined("INDEX") or die;
 
+ini_set("memory_limit", "128M");
+
 set_time_limit(5);
 
 // URL pattern /?k=__&d=__
