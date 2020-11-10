@@ -130,6 +130,7 @@ include ROOT_DIR."/secret/banner.php";
     </form>
     <div style="clear: both; height: 0;"></div>
     <p style="text-align: center"><a href="https://www.wanikani.com/settings/personal_access_tokens" target="_blank">Where do I find my v2 API key?  (Also known as personal access token)</a></p>
+    <p style="text-align: center"><a target="_blank" href="https://community.wanikani.com/t/new-and-improved-wallpaper-generator/37321">Community page</a></p>
 </div>
 
 </body>
