@@ -10,7 +10,7 @@
         <li><a href="#tab-mac">Mac</a></li>
         <li><a href="#tab-multiple-monitors">Multiple Monitors</a></li>
         <li><a href="#tab-other-information">Other Information</a></li>
-        <!--Not ready--><li><a href="#tab-advanced" style="display: none;">Advanced</a></li>
+        <li><a href="#tab-advanced">Advanced</a></li>
     </ul>
     <div id="tab-manual-download">
         <?php include PAGES_DIR."/instructions/manual-download.php"; ?>
