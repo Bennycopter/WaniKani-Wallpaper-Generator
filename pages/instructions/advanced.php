@@ -137,39 +137,73 @@
 
     <h3>Update Lock Screen on Windows 10</h3>
     <div>
-        <p><strong>Summary</strong>: This script works by replacing the lock screen image file located at C:\Windows\Web\Screen\img100.jpg.  It's run through PowerShell.</p>
+        <p><strong>Summary</strong>: This script works by replacing the lock screen image file located at C:\Windows\Web\Screen\img100.jpg.</p>
         <h4>1. Disable Windows Spotlight.</h4>
         <p>Right-click on your desktop, and click on "Personalize".
             In the Personalization settings, select "Lock Screen" at the left.
             Then, set the Background option to Picture.</p>
-        <h4>2. Enable running PowerShell scripts from batch files.</h4>
-        <p>Click on the Windows button in the lower-left corner.</p>
-        <img src="<?=ROOT_URL?>/public/images/help/advanced-lock-screen/2-1.png" alt="Windows Button" />
-        <p>Type "powershell" and then Right-Click on <em>Windows PowerShell</em> and click <strong>Run as administrator</strong></p>
-        <img src="<?=ROOT_URL?>/public/images/help/advanced-lock-screen/2-2.png" alt="Powershell" />
-        <p>Type the following, and then hit enter.</p>
-        <pre>Set-ExecutionPolicy Unrestricted</pre>
-        <p>If you're asked to answer Yes/No/etc., choose "Yes to All".</p>
-        <img src="<?=ROOT_URL?>/public/images/help/advanced-lock-screen/2-3.png" alt="Powershell" />
-        <h4>3. Create a PowerShell script file that updates the lock screen image.</h4>
-        Similar to how you made a .bat file, make a .ps1 file with the following code, and name the file lockscreen.ps1 (that's P-S-One, not P-S-L).
-        <pre class="code">Start-Process -filePath "$env:systemRoot\system32\takeown.exe" -ArgumentList "/F `"$env:programData\Microsoft\Windows\SystemData`" /R /A /D Y" -NoNewWindow -Wait
-Start-Process -filePath "$env:systemRoot\system32\icacls.exe" -ArgumentList "`"$env:programData\Microsoft\Windows\SystemData`" /grant Administrators:(OI)(CI)F /T" -NoNewWindow -Wait
-Start-Process -filePath "$env:systemRoot\system32\icacls.exe" -ArgumentList "`"$env:programData\Microsoft\Windows\SystemData\S-1-5-18\ReadOnly`" /reset /T" -NoNewWindow -Wait
-Remove-Item -Path "$env:programData\Microsoft\Windows\SystemData\S-1-5-18\ReadOnly\LockScreen_Z\*" -Force
-Start-Process -filePath "$env:systemRoot\system32\takeown.exe" -ArgumentList "/F `"$env:systemRoot\Web\Screen`" /R /A /D Y" -NoNewWindow -Wait
-Start-Process -filePath "$env:systemRoot\system32\icacls.exe" -ArgumentList "`"$env:systemRoot\Web\Screen`" /grant Administrators:(OI)(CI)F /T" -NoNewWindow -Wait
-Start-Process -filePath "$env:systemRoot\system32\icacls.exe" -ArgumentList "`"$env:systemRoot\Web\Screen`" /reset /T" -NoNewWindow -Wait
-Copy-Item -Path "$env:systemRoot\Web\Screen\img100.jpg" -Destination "$env:systemRoot\Web\Screen\img200.jpg" -Force
-Copy-Item -Path "wallpaper.png" -Destination "$env:systemRoot\Web\Screen\img100.jpg" -Force</pre>
-        <h4>4. Edit the update.bat file to run the PowerShell script.</h4>
-        <p>Update the bottom lines of your update.bat batch file so it looks like this:</p>
-        <pre class="code">@echo Setting wallpaper
-@WallpaperChanger.exe wallpaper.png
-@echo Setting lock screen image
-@powershell -File "lockscreen.ps1"
-@echo Done</pre>
+        <h4>2. Add this code to the bottom of your update.bat file</h4>
+        <pre class="code"
+>:: Update lock screen
+   @echo Updating lock screen
+   @takeown /F C:\Windows\Web\Screen /R
+   @icacls C:\Windows\Web\Screen /grant:r Administrators:F /T
+   @icacls C:\Windows\Web\Screen /setowner Administrators /T
+   @del /F /Q C:\Windows\Web\Screen\*.*
+   @copy /Y "%~dp0\wallpaper.png" C:\Windows\Web\Screen\img100.jpg
+   @takeown /F C:\ProgramData\Microsoft\Windows\SystemData
+   @icacls C:\ProgramData\Microsoft\Windows\SystemData /grant:r Administrators:F
+   @icacls C:\ProgramData\Microsoft\Windows\SystemData /setowner Administrators
+   @takeown /F C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18 /R /D Y
+   @icacls C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18 /grant:r Administrators:(OI)(CI)F
+   @icacls C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18 /grant:r SYSTEM:(OI)(CI)F
+   @icacls C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18\* /inheritance:e /T
+   @icacls C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18 /setowner Administrators /T
+   @rmdir /s /q C:\ProgramData\Microsoft\Windows\SystemData\S-1-5-18\ReadOnly\
+:: End of Lock Screen code</pre>
+        <h4>3. Always Run as Administrator</h4>
+        <p>Because the lock screen image is technically a system file, this code must be run with elevated privileges or else it won't work.
+            If you are running this script from a scheduled task, make sure to enable "Run with highest privileges".
+            For all other use cases, see the instructions for "Always Run 'update.bat' as an Administrator" below.</p>
+    </div>
 
+    <h3>Always Run 'update.bat' as an Administrator</h3>
+    <div>
+        <h4>1. Add this code to the <strong style="color: yellow">TOP</strong> of your update.bat file</h4>
+        <pre class="code">
+:: Always run as admin
+   @echo off
+   setlocal DisableDelayedExpansion
+   set cmdInvoke=1
+   set winSysFolder=System32
+   set "batchPath=%~0"
+   for %%k in (%0) do set batchName=%%~nk
+   set "vbsGetPrivileges=%temp%\OEgetPriv_%batchName%.vbs"
+   setlocal EnableDelayedExpansion
+   NET FILE 1>NUL 2>NUL
+   if '%errorlevel%' == '0' ( goto gotPrivileges ) else ( goto getPrivileges )
+   :getPrivileges
+   if '%1'=='ELEV' (echo ELEV & shift /1 & goto gotPrivileges)
+   echo Set UAC = CreateObject^("Shell.Application"^) > "%vbsGetPrivileges%"
+   echo args = "ELEV " >> "%vbsGetPrivileges%"
+   echo For Each strArg in WScript.Arguments >> "%vbsGetPrivileges%"
+   echo args = args ^& strArg ^& " "  >> "%vbsGetPrivileges%"
+   echo Next >> "%vbsGetPrivileges%"
+   if '%cmdInvoke%'=='1' goto InvokeCmd
+   echo UAC.ShellExecute "!batchPath!", args, "", "runas", 1 >> "%vbsGetPrivileges%"
+   goto ExecElevation
+   :InvokeCmd
+   echo args = "/c """ + "!batchPath!" + """ " + args >> "%vbsGetPrivileges%"
+   echo UAC.ShellExecute "%SystemRoot%\%winSysFolder%\cmd.exe", args, "", "runas", 1 >> "%vbsGetPrivileges%"
+   :ExecElevation
+   "%SystemRoot%\%winSysFolder%\WScript.exe" "%vbsGetPrivileges%" %*
+   exit /B
+   :gotPrivileges
+   setlocal & cd /d %~dp0
+   if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
+   setlocal DisableDelayedExpansion
+:: End of Always run as admin
+        </pre>
     </div>
 
 </div>
