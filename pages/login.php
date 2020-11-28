@@ -12,7 +12,7 @@ if (sizeof($_POST) > 0 && isset($_POST["api-key"]) && isset($_POST["device"])) {
     $errors = [];
 
     // Error: Incorrect key
-    if (strlen($_POST["api-key"]) != 36) {
+    if (strlen($api_key) != 36) {
         $errors["key-incorrect-length"] = "The personal access token needs to be
                      a 36-character alphanumeric string with
                      dashes (like this 12345678-abcd-ef00-1234-123456789abc).
@@ -23,7 +23,7 @@ if (sizeof($_POST) > 0 && isset($_POST["api-key"]) && isset($_POST["device"])) {
 
     // Error: Old key
     $settings_filename = USERS_DIR . "/$api_key/settings-$device.txt";
-    if (strlen($_POST["api-key"]) == 32 && file_exists($settings_filename)) {
+    if (strlen($api_key) == 32 && file_exists($settings_filename)) {
         $old_settings = print_r(unserialize(file_get_contents($settings_filename)), true);
         $errors["key-is-old"] = "You entered an old v1 API Key.
                      You'll need a new v2 API Key from here:
@@ -43,7 +43,7 @@ if (sizeof($_POST) > 0 && isset($_POST["api-key"]) && isset($_POST["device"])) {
     }
 
     $demo_user = false;
-    if (substr($_POST["api-key"],0,5) == "demo-") {
+    if (substr($api_key,0,5) == "demo-") {
         unset($errors["key-incorrect-length"]);
         unset($errors["key-is-old"]);
         $demo_user = true;
