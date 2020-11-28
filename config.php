@@ -1,7 +1,7 @@
 <?php defined("INDEX") or die;
 
 # Version
-define("V", "2020-05-29" . ($_SERVER["HTTP_HOST"]=="localhost"?time():""));
+define("V", "2020-11-28" . ($_SERVER["HTTP_HOST"]=="localhost"?time():""));
 
 # Timezone
 date_default_timezone_set("UTC");
