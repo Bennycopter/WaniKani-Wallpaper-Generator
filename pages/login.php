@@ -13,7 +13,7 @@ if (sizeof($_POST) > 0 && isset($_POST["api-key"]) && isset($_POST["device"])) {
 
     // Error: Incorrect key
     if (strlen($_POST["api-key"]) != 36) {
-        $errors[] = "The personal access token needs to be
+        $errors["key-incorrect-length"] = "The personal access token needs to be
                      a 36-character alphanumeric string with
                      dashes (like this 12345678-abcd-ef00-1234-123456789abc).
                      To find your personal access token,
@@ -25,7 +25,7 @@ if (sizeof($_POST) > 0 && isset($_POST["api-key"]) && isset($_POST["device"])) {
     $settings_filename = USERS_DIR . "/$api_key/settings-$device.txt";
     if (strlen($_POST["api-key"]) == 32 && file_exists($settings_filename)) {
         $old_settings = print_r(unserialize(file_get_contents($settings_filename)), true);
-        $errors[] = "You entered an old v1 API Key.
+        $errors["key-is-old"] = "You entered an old v1 API Key.
                      You'll need a new v2 API Key from here:
                      <a href='https://www.wanikani.com/settings/personal_access_tokens'
                      target='_blank'>click here</a>.<br><br>
@@ -35,14 +35,19 @@ if (sizeof($_POST) > 0 && isset($_POST["api-key"]) && isset($_POST["device"])) {
 
     // Error: Device number out of range
     if ($device != clamp($device,1,10)) {
-        $errors[] = "This hack attempt was recorded.  Isn't 10 devices enough?  c'mon man";
+        $errors["device-out-of-range"] = "This hack attempt was recorded.  Isn't 10 devices enough?  c'mon man";
         log_error(
             "This input was given for a device select: $_POST[device]",
             __LINE__, __FILE__
         );
     }
 
-
+    $demo_user = false;
+    if (substr($_POST["api-key"],0,5) == "demo-") {
+        unset($errors["key-incorrect-length"]);
+        unset($errors["key-is-old"]);
+        $demo_user = true;
+    }
 
     if (sizeof($errors) == 0) {
 
@@ -52,6 +57,10 @@ if (sizeof($_POST) > 0 && isset($_POST["api-key"]) && isset($_POST["device"])) {
         }
 
         // Unknown user
+        elseif ($demo_user) {
+            log_in_user($api_key, $device);
+            prepare_user_folder($api_key, substr($api_key, 5));
+        }
         else {
             $wk_response = wanikani_request("user", $api_key);
             if ($wk_response) {

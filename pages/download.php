@@ -173,7 +173,7 @@ function create_and_output_wallpaper($s, $progress_report, $kanji_sections, $kan
     }
 
     // Remove padding if drawing section titles
-    if ($s["show_section_titles"] == 1 && $s["show_wallpaper_title"] == 0)
+    if ($s["show_section_titles"] == 1 && $s["show_wallpaper_title"] == 0 && join(array_keys($kanji_sections)) != "")
         $section_offset_y -= $s["section_title_padding_top"];
 
     // Draw each character
@@ -182,7 +182,7 @@ function create_and_output_wallpaper($s, $progress_report, $kanji_sections, $kan
         $num_kanji = mb_strlen($kanji_section);
 
         // Draw section title
-        if ($s["show_section_titles"] == 1) {
+        if ($s["show_section_titles"] == 1 && $section_title != "") {
             $section_offset_y += $s["section_title_padding_top"];
             imagettftext($canvas, $s["section_title_height"], 0, $s["left"] + $s["section_title_padding_left"], $section_offset_y + $s["section_title_height"], $colors["section_titles"], $section_titles_font_path, $section_title);
             $section_offset_y += $s["section_title_height"];
