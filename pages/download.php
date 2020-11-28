@@ -9,10 +9,12 @@ set_time_limit(5);
 $api_key    = sanitize_filename($_GET["k"] ?? $_GET["api-key"]);
 $device     = filter_integer($_GET["d"] ?? $_GET["device"] ?? 1);
 
+// Handle demo users
+$is_demo_user = substr($api_key,0,5) == "demo-";
 
 ///// Error Handling /////
 
-if (strlen($api_key) == 32)
+if (strlen($api_key) == 32 && !$is_demo_user)
     // v1 API Key is 32 characters
     die_with_image(ASSETS_DIR."/error-graphics/old-api-key.png");
 
@@ -35,7 +37,7 @@ if (num_generations_today($api_key) > DAILY_GENERATION_LIMIT)
 ///// Make Wallpaper /////
 
 log_generation($api_key);
-$progress_report = get_user_progress_report($api_key);
+$progress_report = get_user_progress_report($api_key, $is_demo_user);
 $font_scale = calculate_font_scale($s);
 $kanji_sections = load_kanji_sections($s);
 if ($s["collapse_sections"] == 1) {

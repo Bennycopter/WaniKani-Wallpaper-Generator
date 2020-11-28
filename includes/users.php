@@ -151,7 +151,10 @@ function num_generations_today($api_key) {
     return $num_generations;
 }
 
-function get_user_progress_report($api_key) {
+function get_user_progress_report($api_key, $demo=false) {
+
+    if ($demo) return file_get_json(ASSETS_DIR."/demo_progress_report.txt");
+
     $kanji_by_id = json_decode(file_get_contents(PRESETS_DIR."/all-wk-kanji.txt"),true);
     $progress_report = [];
 
