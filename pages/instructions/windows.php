@@ -12,7 +12,7 @@
 <p>3. <strong>Create a Batch File</strong></p>
 <p>Open up Notepad.  One way to open Notepad is to do Windows+R (hold down the Windows key on your keyboard and tap the "R" key once) and type "notepad", as shown on the right.</p>
 <p>Copy and paste the text below into Notepad.</p>
-<pre style="border: 1px solid white; width: 100%; box-sizing: border-box; padding: 22px 26px; clear:both; white-space: pre-wrap;">@cd /d %~dp0
+<pre class="code">@cd /d %~dp0
 @echo Downloading wallpaper
 @curl -s -A "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36" -o wallpaper.png "<?=SITE_URL?>?k=<?=$api_key?>&d=<?=$device?>"
 @echo Setting wallpaper
@@ -44,7 +44,7 @@
     </script>
 </p>
 <p>Open up the batch file in Notepad again, and change the batch file to the following:</p>
-<pre style="border: 1px solid white; width: 100%; box-sizing: border-box; padding: 22px 26px; clear:both; white-space: pre-wrap;">@cd /d %~dp0
+<pre class="code">@cd /d %~dp0
 @echo Downloading wallpaper
 @curl-<?=CURL_FOR_WINDOWS_VERSION?>-win32-mingw\bin\curl -s -A "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36" -o wallpaper.png "<?=SITE_URL?>?k=<?=$api_key?>&d=<?=$device?>"
 @echo Setting wallpaper

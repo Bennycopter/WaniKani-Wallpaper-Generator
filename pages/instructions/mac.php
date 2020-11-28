@@ -12,7 +12,7 @@
 
 <p>Copy and paste the following code into TextEdit.</p>
 
-<pre style="border: 1px solid white; width: 100%; box-sizing: border-box; padding: 22px 26px; clear:both; white-space: pre-wrap;">#!/bin/bash
+<pre class="code">#!/bin/bash
 cd "$(dirname "$0")"
 curl -s -A "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36" -o "wallpaper.png" "<?=SITE_URL?>?k=<?=$api_key?>&d=<?=$device?>"
 osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"$(dirname "$0")/wallpaper.png\""</pre>

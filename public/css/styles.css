@@ -165,6 +165,16 @@ a.btn:hover, a.btn:focus {
     background-color: #555;
 }
 
+pre.code {
+    border: 1px solid white;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 22px 26px;
+    clear:both;
+    overflow-x: auto;
+    overflow-wrap: unset;
+}
+
 
 
 /*******************/
