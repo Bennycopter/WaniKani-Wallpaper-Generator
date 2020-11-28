@@ -101,8 +101,8 @@ include ROOT_DIR."/secret/banner.php";
     <form method="post" action=".">
         <div style="width: 50%; margin: 0 auto;">
             <div>
-                <div style="float: left; padding-top: 5px;"><label for="api-key">v2 API Key:</label></div>
-                <input type="text" name="api-key" placeholder="Personal Access Token" style="width: 72%; float: right;" value="<?= $_GET["api-key"] ?? "" ?>" id="api-key" />
+                <div style="float: left; padding-top: 5px;"><label for="api-key">API Token:</label></div>
+                <input type="text" name="api-key" placeholder="________-____-____-____________" style="width: 72%; float: right;" value="<?= $_GET["api-key"] ?? "" ?>" id="api-key" />
             </div>
 
             <div style="padding-top: 15px; clear: both;">
@@ -129,8 +129,8 @@ include ROOT_DIR."/secret/banner.php";
 
     </form>
     <div style="clear: both; height: 0;"></div>
-    <p style="text-align: center"><a href="https://www.wanikani.com/settings/personal_access_tokens" target="_blank">Where do I find my v2 API key?  (Also known as personal access token)</a></p>
-    <p style="text-align: center"><a target="_blank" href="https://community.wanikani.com/t/new-and-improved-wallpaper-generator/37321">Community page</a></p>
+    <p style="text-align: center"><a href="https://www.wanikani.com/settings/personal_access_tokens" target="_blank">Where do I find my API Tokens?</a></p>
+    <p style="text-align: center">Need help?  Check out the <a target="_blank" href="https://community.wanikani.com/t/new-and-improved-wallpaper-generator/37321">WK Community page</a></p>
 </div>
 
 </body>
