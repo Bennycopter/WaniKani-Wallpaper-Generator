@@ -12,9 +12,10 @@ Access it here: [wkw.natural20design.com](http://wkw.natural20design.com)
 
 **Part 1 - XAMPP**
 1) Install [XAMPP for *Windows*](https://www.apachefriends.org/index.html).  *(These instructions assume that you install it at `C:\xampp`)*
-2) Open the XAMPP Control Panel as an *administrator*, found at `C:\xampp\xampp-control.exe`.
-3) Click the Start button to the right of "Apache".
-4) Click the red X to the left of "Apache" to install the Apache service.
+2) Open Notepad, and edit the file `C:\xampp\php\php.ini`.  Search for `extension=gd` and make sure the line does not have a semicolon `;` in front of it.  Save the file.
+3) Open the XAMPP Control Panel as an *administrator*, found at `C:\xampp\xampp-control.exe`.
+4) Click the Start button to the right of "Apache".
+5) Click the red X to the left of "Apache" to install the Apache service.
 
 **Part 2 - This App**
 1) [Download the source code](https://github.com/Bennycopter/WaniKani-Wallpaper-Generator/archive/master.zip) 
