@@ -159,7 +159,7 @@ function load_kanji_set_presets() {
             "description"=>"This kanji set is a variation on the Heisig set:
                             all missing WaniKani kanji have been added, and
                             all non-WaniKani kanji have been removed.",
-            "num_kanji"=>2048,
+            "num_kanji"=>2074,
         ],
 
         ///// Frequency /////
@@ -185,7 +185,7 @@ function load_kanji_set_presets() {
         "wanikani" => [
             "title"=>"WaniKani Levels",
             "num_levels" => 60,
-            "num_kanji" => 2048,
+            "num_kanji" => 2074, // same as default.txt set
             "sections" => /* Level 1 - Level 60 */
                           array_map(
                               function($v){return"Level $v";},
