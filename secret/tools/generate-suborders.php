@@ -1,4 +1,5 @@
-<?php
+<?php require "../password-protect.php";
+
 define("NO_ROUTE", true);
 include("../../index.php");
 set_time_limit(5);
