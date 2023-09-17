@@ -149,8 +149,7 @@ function load_kanji_set_presets() {
         "快 Pleasant","苦 Painful","死 Death",
         "地獄 Hell","天国 Paradise","現実 Reality"
     ];
-    $wanikani_description = "This list is pulled from WaniKani itself, and
-                             it has been updated on May 30, 2020.";
+    $wanikani_description = "This list is pulled from WaniKani itself.";
 
     return [
         ///// Default /////
