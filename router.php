@@ -11,6 +11,10 @@ if (isset($_GET["_url"])) {
         include PAGES_DIR . '/order.php';
         exit;
     }
+    if ($file == 'manual-kanji.php') {
+        include PAGES_DIR . '/manual-kanji.php';
+        exit;
+    }
 }
 
 // ?k=__&d=__ download URLs

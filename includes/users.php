@@ -30,6 +30,18 @@ function save_user_settings($api_key, $device, $settings) {
     file_put_json(user_settings_file($api_key,$device), $settings);
 }
 
+function get_user_custom_kanji($api_key) {
+    $file = user_settings_file($api_key, "custom-kanji");
+    if (file_exists($file)) {
+        return file_get_contents($file);
+    }
+    return "";
+}
+
+function save_user_custom_kanji($api_key, $custom_kanji) {
+    file_put_contents(user_settings_file($api_key, "custom-kanji"), $custom_kanji);
+}
+
 function user_settings_file($api_key, $device) {
     return USERS_DIR."/$api_key/settings-$device.txt";
 }
@@ -177,4 +189,27 @@ function get_user_progress_report($api_key, $demo=false) {
     }
 
     return $progress_report;
+}
+
+function update_user_report_with_custom_kanji(&$progress_report, $api_key) {
+    if ($api_key !== "demo-test") return;
+
+    $custom_kanji = get_user_custom_kanji($api_key);
+    if (!$custom_kanji) return;
+
+    $lines = explode("\n", trim($custom_kanji));
+    foreach ($lines as $line) {
+        $parts = explode(" ", trim($line));
+        $kanji = $parts[0];
+        $level = $parts[sizeof($parts)-1];
+        // levels go from 0 to 5
+        $progress_report[$kanji] = [
+            "unseen",
+            "apprentice",
+            "guru",
+            "master",
+            "enlightened",
+            "burned",
+        ][$level] ?? "unseen";
+    }
 }

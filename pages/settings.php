@@ -341,6 +341,7 @@ include ROOT_DIR."/secret/banner.php";
             <p style="text-align: center;" id="kanjiset-description">This kanji set is a variation on the Heisig set.  All missing WaniKani kanji have been added, and all non-WaniKani kanji have been removed.</p>
             <p style="text-align: center;">Click <a href="order.php?order=default" target="_blank" id="kanjiset-full-list-link">here</a> to see this set's kanji<span id="kanjiset-and-sections-text"> and sections</span>.</p>
             <p style="text-align: center;" id="kanjiset-more-info">Click <a href="#" target="_blank" id="kanjiset-more-info-link">here</a> for more info on this set.</p>
+            <p style="text-align: center;">Click <a href="manual-kanji.php?api_key=<?=$api_key?>&device=<?=$device?>" target="_blank">here</a> to configure manual kanji (for kanji outside of WaniKani).</p>
         </div>
 
         <div style="float: left; width: 47.5%; padding-top: 60px; padding-left: 5%;">

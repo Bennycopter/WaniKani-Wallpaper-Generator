@@ -38,6 +38,7 @@ if (num_generations_today($api_key) > DAILY_GENERATION_LIMIT)
 
 log_generation($api_key);
 $progress_report = get_user_progress_report($api_key, $is_demo_user);
+update_user_report_with_custom_kanji($progress_report, $api_key);
 $font_scale = calculate_font_scale($s);
 $kanji_sections = load_kanji_sections($s);
 if ($s["collapse_sections"] == 1) {
