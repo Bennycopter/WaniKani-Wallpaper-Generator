@@ -140,6 +140,7 @@ include ROOT_DIR."/secret/banner.php";
     <div style="clear: both; height: 0;"></div>
     <p style="text-align: center"><a href="https://www.wanikani.com/settings/personal_access_tokens" target="_blank">Where do I find my API Tokens?</a></p>
     <p style="text-align: center">Need help?  Check out the <a target="_blank" href="https://community.wanikani.com/t/new-and-improved-wallpaper-generator/37321">WK Community page</a></p>
+    <p style="text-align: center">Wanna see my main project?  Check out the <a target="_blank" href="https://cijapanese.com">Comprehensible Japanese website</a></p>
 </div>
 
 </body>
